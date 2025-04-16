@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\User\PermissionController;
 use App\Http\Controllers\user\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,9 +20,11 @@ Route::middleware('auth')->group(function () {
 
 
 
+    Route::post('/user/{id}/deactivate', [UserController::class, 'deactivate'])->name('user.deactivate');
 
+    Route::post('/user/{id}/activate', [UserController::class, 'activate'])->name('user.activate');
     Route::resource('user', UserController::class);
-
+    Route::resource('Permission', PermissionController::class);
 
 
 });

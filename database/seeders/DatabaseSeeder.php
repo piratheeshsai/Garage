@@ -22,6 +22,10 @@ class DatabaseSeeder extends Seeder
 
             $this->call([
 
+
+                PermissionGroupTableSeeder::class,
+                PermissionTableSeeder::class,
+                RoleTableSeeder::class,
                 userSeeder::class,
 
 

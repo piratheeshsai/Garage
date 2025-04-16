@@ -55,7 +55,7 @@ class UserController extends Controller
 
 
         // Flash success message to the session
-        return redirect()->route('user.index')->with('swal_success', 'User created successfully!');
+        return redirect()->route('user.index')->with('success', 'User created successfully!');
     }
 
     /**
@@ -99,7 +99,7 @@ class UserController extends Controller
         ]);
 
         // Flash success message to the session
-        return redirect()->route('user.index')->with('swal_success', 'User updated successfully!');
+        return redirect()->route('user.index')->with('success', 'User updated successfully!');
 
 
     }
@@ -112,7 +112,7 @@ class UserController extends Controller
 
         $user=User::findOrFail($id);
         $user->delete();
-        return redirect()->route('user.index')->with('swal_success', 'User deleted successfully!');
+        return redirect()->route('user.index')->with('success', 'User deleted successfully!');
     }
 
 
@@ -122,7 +122,7 @@ class UserController extends Controller
         $user->status = 'inactive';
         $user->save();
 
-        return redirect()->route('user.index')->with('swal_success', 'User deactivated successfully.');
+        return redirect()->route('user.index')->with('success', 'User deactivated successfully.');
     }
 
     public function activate(string $id)
@@ -131,6 +131,6 @@ class UserController extends Controller
         $user->status = 'active';
         $user->save();
 
-        return redirect()->route('user.index')->with('swal_success', 'User activated successfully.');
+        return redirect()->route('user.index')->with('success', 'User activated successfully.');
     }
 }

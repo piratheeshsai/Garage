@@ -46,7 +46,7 @@ class PermissionController extends Controller
                             ->first();
 
         if ($existingRole) {
-            return redirect()->back()->with('swal_error', 'Role already exists.');
+            return redirect()->back()->with('error', 'Role already exists.');
 
         }
 
@@ -60,7 +60,7 @@ class PermissionController extends Controller
         $permissionIds = array_map('intval', $request->permission_ids);
         $role->syncPermissions($permissionIds);
 
-        return redirect()->route('Permission.index')->with('swal_success', 'Role created successfully.');
+        return redirect()->route('Permission.index')->with('success', 'Role created successfully.');
 
     }
 
@@ -92,7 +92,7 @@ class PermissionController extends Controller
         $role->save();
         $permissionIds = array_map('intval', $request->permission_ids);
         $role->syncPermissions($permissionIds);
-        return redirect()->route('Permission.index')->with('swal_success', 'Role created');
+        return redirect()->route('Permission.index')->with('success', 'Role created');
 
     }
 
@@ -105,6 +105,6 @@ class PermissionController extends Controller
         $role = Role::findOrFail($id);
         $role->delete();
 
-        return redirect()->route('Permission.index')->with('swal_success', 'Role deleted successfully.');
+        return redirect()->route('Permission.index')->with('success', 'Role deleted successfully.');
     }
 }

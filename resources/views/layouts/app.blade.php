@@ -127,6 +127,8 @@ var win = navigator.platform.indexOf('Win') > -1;
     <!-- CSS Files -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
     @vite(['resources/css/app.css'])
 
 </head>
@@ -292,7 +294,8 @@ var win = navigator.platform.indexOf('Win') > -1;
             Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
         }
     </script>
-    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
     <script src="{{ asset('js/core/popper.min.js') }}"></script>
@@ -305,31 +308,51 @@ var win = navigator.platform.indexOf('Win') > -1;
     <script src="{{ asset('js/argon-dashboard.min.js') }}"></script>
     <script>
         // Check for SweetAlert messages
-        document.addEventListener('DOMContentLoaded', function() {
-            // Success message
-            const successMessage = '{{ session('swal_success') }}';
-            if (successMessage) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Success!',
-                    text: successMessage,
-                    confirmButtonColor: '##3d85c6'
-                });
-            }
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     // Success message
+        //     const successMessage = '{{ session('success') }}';
+        //     if (successMessage) {
+        //         Swal.fire({
+        //             icon: 'success',
+        //             title: 'Success!',
+        //             text: successMessage,
+        //             confirmButtonColor: '##3d85c6'
+        //         });
+        //     }
 
-            // Error message (optional)
-            const errorMessage = '{{ session('swal_error') }}';
-            if (errorMessage) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error!',
-                    text: errorMessage,
-                    confirmButtonColor: '#d33'
-                });
-            }
-        });
+        //     // Error message (optional)
+        //     const errorMessage = '{{ session('error') }}';
+        //     if (errorMessage) {
+        //         Swal.fire({
+        //             icon: 'error',
+        //             title: 'Error!',
+        //             text: errorMessage,
+        //             confirmButtonColor: '#d33'
+        //         });
+        //     }
+        // });
+
+        @if(session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: "{{ session('success') }}",
+                timer: 3000,
+                timerProgressBar: true
+            });
+        @endif
+
+        @if(session('error'))
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: "{{ session('error') }}",
+                timer: 3000,
+                timerProgressBar: true
+            });
+        @endif
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
     @vite(['resources/js/app.js'])
 </body>
 

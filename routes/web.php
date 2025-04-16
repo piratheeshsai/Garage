@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\PermissionController;
 use App\Http\Controllers\user\UserController;
+use App\Http\Controllers\user\UserRoleController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -25,6 +26,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/user/{id}/activate', [UserController::class, 'activate'])->name('user.activate');
     Route::resource('user', UserController::class);
     Route::resource('Permission', PermissionController::class);
+
+
+    Route::post('/update-user-role/{id}', [UserRoleController::class, 'updateUserRole'])->name('update.user.role');
+    Route::resource('Role', UserRoleController::class);
 
 
 });

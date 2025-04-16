@@ -92,32 +92,6 @@
                                                         </form>
                                                   </li>
                                             </ul>
-
-
-                                                {{-- <div class="d-flex justify-content-center gap-2">
-
-
-                                                        <a href="{{ route('Permission.edit', $role->id) }}"
-                                                            class="btn btn-sm btn-outline-primary" data-bs-toggle="tooltip"
-                                                            title="Edit Role">
-                                                            <i class="fas fa-edit"></i>
-                                                        </a>
-
-
-
-                                                        <button type="button" class="btn btn-sm btn-outline-danger"
-                                                            onclick="confirmDelete({{ $role->id }}, '{{ $role->name }}')"
-                                                            data-bs-toggle="tooltip" title="Delete Role">
-                                                            <i class="fas fa-trash"></i>
-                                                        </button>
-
-                                                    <form id="delete-form-{{ $role->id }}"
-                                                        action="{{ route('Permission.destroy', $role->id) }}" method="POST"
-                                                        class="d-none">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                    </form>
-                                                </div> --}}
                                             </td>
                                         </tr>
                                     @endforeach

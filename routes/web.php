@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Customer\CustomerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\PermissionController;
 use App\Http\Controllers\user\UserController;
@@ -32,6 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('Role', UserRoleController::class);
 
 
+    Route::resource('customers', CustomerController::class);
 });
 
 require __DIR__.'/auth.php';

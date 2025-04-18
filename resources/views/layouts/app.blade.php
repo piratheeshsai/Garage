@@ -130,7 +130,7 @@ var win = navigator.platform.indexOf('Win') > -1;
 
 
     @vite(['resources/css/app.css'])
-
+  
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
@@ -143,8 +143,13 @@ var win = navigator.platform.indexOf('Win') > -1;
 
         <div class="container-fluid py-4 mt-3">
 
-            @yield('content')
+            {{-- <x-loader /> --}}
 
+
+            @yield('content')
+            <div id="loader" class="loader-container">
+                <div class="dot-ring-loader"></div>
+            </div>
 
 
         </div>
@@ -246,6 +251,52 @@ var win = navigator.platform.indexOf('Win') > -1;
     </div>
 
     <script>
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const loader = document.getElementById('loader');
+
+    // Fallback: wait until browser fully paints
+    window.addEventListener('load', function () {
+        setTimeout(() => {
+            loader.style.display = 'none';
+        }, 300); // delay to allow UI to paint
+    });
+
+    // Show loader before page unload
+    window.addEventListener('beforeunload', function () {
+        loader.style.display = 'flex';
+    });
+
+    // Show loader on internal link clicks
+    document.querySelectorAll('a[href]').forEach(link => {
+        link.addEventListener('click', function (e) {
+            const href = link.getAttribute('href');
+            if (link.target === '_blank' || href.startsWith('#') || href.startsWith('javascript:')) return;
+
+            loader.style.display = 'flex';
+        });
+    });
+
+    // Show loader on form submits
+    document.querySelectorAll('form').forEach(form => {
+        form.addEventListener('submit', function () {
+            loader.style.display = 'flex';
+        });
+    });
+
+    // Fix for browser back/forward navigation
+    window.addEventListener('pageshow', function (event) {
+        if (event.persisted) {
+            loader.style.display = 'none';
+        }
+    });
+});
+
+
+
+
+
         document.getElementById('logoutButton').addEventListener('click', function() {
 
             Swal.fire({
@@ -293,6 +344,11 @@ var win = navigator.platform.indexOf('Win') > -1;
             }
             Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
         }
+
+
+
+
+
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

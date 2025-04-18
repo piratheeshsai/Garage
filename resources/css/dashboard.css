@@ -203,6 +203,51 @@ body {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+.loader-container {
+    position: fixed;
+    inset: 0;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* Dot Ring Loader */
+.dot-ring-loader {
+    position: relative;
+    width: 64px;
+    height: 64px;
+}
+
+.dot-ring-loader::before, .dot-ring-loader::after {
+    content: "";
+    position: absolute;
+    border: 6px dotted #3498db; /* Dot style */
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    animation: spin 1.2s linear infinite;
+}
+
+.dot-ring-loader::after {
+    border-color: #2980b9 transparent transparent transparent; /* optional variation */
+    animation-direction: reverse;
+    opacity: 0.6;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
 hr {
   margin: 1rem 0;
   color: inherit;
